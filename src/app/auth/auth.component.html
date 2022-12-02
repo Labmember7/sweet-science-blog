@@ -1,16 +1,16 @@
-<form [formGroup]="form">
-    <fieldset>
-        <legend>Login</legend>
-        <div class="form-field">
-            <label>Email:</label>
-            <input name="email" formControlName="email">
+<div class="container" style="max-width: 550px">
+    <h2 class="text-center mb-5">Angular Login with Google</h2>
+    <div *ngIf="isLoggedin === false">
+        <div>
+            <button type="button" (click)="loginWithGoogle()" class="btn btn-danger">Login with Google</button>
         </div>
-        <div class="form-field">
-            <label>Password:</label>
-            <input name="password" formControlName="password" type="password">
-        </div>
-    </fieldset>
-    <div class="form-buttons">
-        <button class="button button-primary" (click)="login()">Login</button>
     </div>
-</form>
+    <div *ngIf="isLoggedin === true">
+        <img src="{{ socialUser.photoUrl }}" referrerpolicy="no-referrer">
+        <div>
+            <h4>{{ socialUser.name }}</h4>
+            <p>{{ socialUser.email }}</p>
+        </div>
+        <button type="button" (click)="logOut()" class="btn btn-primary">Log Out</button>
+    </div>
+</div>

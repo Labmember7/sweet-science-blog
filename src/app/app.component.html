@@ -1,17 +1,1 @@
-<div class="container" style="max-width: 550px">
-    <h2 class="text-center mb-5">Angular Login with Google</h2>
-    <asl-google-signin-button type='icon' text='signin_with' size='medium'>sign in</asl-google-signin-button>
-    <div *ngIf="isLoggedin === false">
-        <div>
-            <button type="button" (click)="loginWithGoogle()" class="btn btn-danger">Login with Google</button>
-        </div>
-    </div>
-    <div *ngIf="isLoggedin === true">
-        <img src="{{ socialUser.photoUrl }}" referrerpolicy="no-referrer">
-        <div>
-            <h4>{{ socialUser.name }}</h4>
-            <p>{{ socialUser.email }}</p>
-        </div>
-        <button type="button" (click)="logOut()" class="btn btn-primary">Log Out</button>
-    </div>
-</div>
+<app-auth></app-auth>

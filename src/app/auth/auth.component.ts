@@ -1,37 +1,39 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { AuthService } from '../Services/auth.service';
+import {
+    SocialAuthService,
+    GoogleLoginProvider,
+    SocialUser,
+} from '@abacritt/angularx-social-login';
 
 @Component({
-  selector: 'app-auth',
-  templateUrl: './auth.component.html',
-  styleUrls: ['./auth.component.css']
+    selector: 'app-auth',
+    templateUrl: './auth.component.html',
+    styleUrls: ['./auth.component.css']
 })
 export class AuthComponent {
-form:FormGroup;
-
-    constructor(private fb:FormBuilder, 
-                 private authService: AuthService, 
-                 private router: Router) {
-
-        this.form = this.fb.group({
-            email: ['',Validators.required],
-            password: ['',Validators.required]
+    loginForm!: FormGroup;
+    socialUser!: SocialUser;
+    isLoggedin?: boolean;
+    constructor(
+        private formBuilder: FormBuilder,
+        private socialAuthService: SocialAuthService
+    ) { }
+    ngOnInit() {
+        this.loginForm = this.formBuilder.group({
+            email: ['', Validators.required],
+            password: ['', Validators.required],
+        });
+        this.socialAuthService.authState.subscribe((user) => {
+            this.socialUser = user;
+            this.isLoggedin = user != null;
+            console.log(this.socialUser);
         });
     }
-
-    login() {
-        const val = this.form.value;
-
-        if (val.email && val.password) {
-          this.authService.login(val.email, val.password)
-                .subscribe(
-                    () => {
-                        console.log("User is logged in");
-                        this.router.navigateByUrl('/');
-                    }
-                );
-        }
+    loginWithGoogle(): void {
+        this.socialAuthService.signIn(GoogleLoginProvider.PROVIDER_ID);
+    }
+    logOut(): void {
+        this.socialAuthService.signOut();
     }
 }
