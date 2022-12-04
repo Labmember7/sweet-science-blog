@@ -6,5 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'sweet-science-blog';
+  search: string = '';
+  title: string = '🧁Sci-BLOG';
+  topics: string[] = ['Math', 'Physics', 'Economie'];
 }

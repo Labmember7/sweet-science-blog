@@ -1,0 +1,24 @@
+<mat-card>
+    <mat-card class="example-card">
+        <mat-card-header>
+            <mat-card-subtitle>Username</mat-card-subtitle>
+            <mat-card-title>Title</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <p>This card has divider and indeterminate progress as footer</p>
+            <p>{{ longText }}</p>
+            <mat-divider></mat-divider>
+        </mat-card-content>
+        <mat-card-actions class="center">
+            <button mat-button>
+                <mat-icon>favorite</mat-icon>LIKE
+            </button>
+            <button mat-button>
+                <mat-icon>share</mat-icon>SHARE
+            </button>
+        </mat-card-actions>
+        <mat-card-footer>
+            <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+        </mat-card-footer>
+    </mat-card>
+</mat-card>
