@@ -16,11 +16,14 @@ import { MatCardModule } from '@angular/material/card';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { ArticleCardComponent } from './article-card/article-card.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { ArticleContentComponent } from './article-content/article-content.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ArticleCardComponent,
+    ArticleContentComponent
   ],
   imports: [
     BrowserModule,
@@ -31,8 +34,8 @@ import { ArticleCardComponent } from './article-card/article-card.component';
     MatTabsModule,
     MatToolbarModule,
     MatIconModule,
-    MatButtonModule, MatFormFieldModule, MatInputModule, MatCardModule, MatDividerModule, MatProgressBarModule
-
+    MatButtonModule, MatFormFieldModule, MatInputModule, MatCardModule, MatDividerModule, MatProgressBarModule,
+    MatDialogModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

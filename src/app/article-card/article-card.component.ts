@@ -1,12 +1,28 @@
 import { Component } from '@angular/core';
-
+import { MatDialog } from '@angular/material/dialog';
+import { ArticleContentComponent } from '../article-content/article-content.component';
+import { Article } from '../Models/article';
 @Component({
   selector: 'app-article-card',
   templateUrl: './article-card.component.html',
   styleUrls: ['./article-card.component.css']
 })
 export class ArticleCardComponent {
-  longText = `The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog
-  from Japan. A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was
-  originally bred for hunting.`;
+  article: Article = {
+    title: "Title",
+    creator: "Creator",
+    createdAt: new Date(),
+    content: "Content...",
+  };
+  constructor(public dialog: MatDialog) { }
+
+  openDialog() {
+    const dialogRef = this.dialog.open(ArticleContentComponent, {
+      data: this.article,
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
 }
