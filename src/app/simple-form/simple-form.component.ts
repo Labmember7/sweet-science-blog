@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, FormArray, Validators, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-simple-form',
@@ -7,41 +7,39 @@ import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
   styleUrls: ['./simple-form.component.css']
 })
 export class SimpleFormComponent implements OnInit {
-  myForm!: FormGroup;
+  articleForm!: FormGroup;
   constructor(private fb: FormBuilder) { }
   ngOnInit() {
-    this.myForm = this.fb.group({
-      email: ['', [
+    this.articleForm = this.fb.group({
+      title: ['', [
         Validators.required,
-        Validators.email
       ]],
-      phones: this.fb.array([])
+      sections: this.fb.array([])
     });
-    this.myForm.valueChanges.subscribe(console.log);
+    this.articleForm.valueChanges.subscribe(console.log);
   }
-  get phoneForms() {
-    return this.myForm.get('phones') as FormArray;
+  get sectionsForms() {
+    return this.articleForm.get('sections') as FormArray;
   }
-  addPhone() {
-    const phone = this.fb.group({
-      area: ['', [
+
+  addSectionForm() {
+    const section = this.fb.group({
+      content: ['', [
         Validators.required,
-        Validators.minLength(10)
       ]],
-      prefix: ['', [
+      imagePath: ['', [
         Validators.required,
-        Validators.minLength(10)
       ]],
     });
-    this.phoneForms.push(phone);
+    this.sectionsForms.push(section);
   }
-  deletePhone(i: number) {
-    this.phoneForms.removeAt(i);
+  deleteSection(i: number) {
+    this.sectionsForms.removeAt(i);
   }
-  get email() {
-    return this.myForm.get('email');
+  get title() {
+    return this.articleForm.get('title');
   }
-  phone(i: number) {
-    return this.phoneForms.at(i);
+  section(i: number) {
+    return this.sectionsForms.at(i);
   }
 }

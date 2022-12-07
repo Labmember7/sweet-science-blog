@@ -1,30 +1,37 @@
-<form [formGroup]="myForm">
+<form [formGroup]="articleForm">
 
-    Value : {{ myForm.value|json }}
+    Value : {{ articleForm.value|json }}
     <hr>
     <mat-form-field>
-        <input matInput placeholder="email" formControlName="email">
-        <mat-error *ngIf="email!.invalid && email!.touched">
+        <input matInput placeholder="title" formControlName="title">
+        <mat-error *ngIf="title!.invalid && title!.touched">
             your email is wrong
         </mat-error>
     </mat-form-field>
     <hr>
 
-    <div formArrayName="phones">
-        <div *ngFor="let phone of phoneForms.controls; let i=index" [formGroupName]="i">
+    <div formArrayName="sections">
+        <div *ngFor="let section of sectionsForms.controls; let i=index" [formGroupName]="i">
             <mat-form-field>
-                <input matInput placeholder="area" formControlName="area">
+                <textarea matInput placeholder="content" formControlName="content"></textarea>
+                <mat-error *ngIf="section.get('content')!.invalid && section.get('content')!.touched">..Content is
+                    empty..
+                </mat-error>
             </mat-form-field>
             <mat-form-field>
-                <input matInput placeholder="prefix" formControlName="prefix">
+                <input matInput placeholder="Image path" formControlName="imagePath">
+                <mat-error *ngIf="section.get('imagePath')!.invalid && section.get('imagePath')!.touched">..imagePath is
+                    empty..
+                </mat-error>
             </mat-form-field>
 
-            <button mat-raised-button color="warn" (click)="deletePhone(i)">Delete</button>
+            <button mat-raised-button color="warn" (click)="deleteSection(i)">Delete</button>
             <hr>
         </div>
-        <button mat-raised-button color="primary" (click)="addPhone()">Add</button>
+        <button mat-raised-button color="primary" (click)="addSectionForm()">Add</button>
         <hr>
-        <button mat-raised-button [disabled]="myForm.invalid" color="primary" (click)="addPhone()">Submit</button>
+        <button mat-raised-button [disabled]="articleForm.invalid" color="primary"
+            (click)="addSectionForm()">Submit</button>
 
     </div>
 
