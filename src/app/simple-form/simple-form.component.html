@@ -13,6 +13,13 @@
     <div formArrayName="sections">
         <div *ngFor="let section of sectionsForms.controls; let i=index" [formGroupName]="i">
             <mat-form-field>
+                <input matInput placeholder="sectionTitle" formControlName="sectionTitle">
+                <mat-error *ngIf="section.get('sectionTitle')!.invalid && section.get('sectionTitle')!.touched">..Title
+                    is
+                    empty..
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field>
                 <textarea matInput placeholder="content" formControlName="content"></textarea>
                 <mat-error *ngIf="section.get('content')!.invalid && section.get('content')!.touched">..Content is
                     empty..

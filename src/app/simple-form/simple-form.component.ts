@@ -24,6 +24,11 @@ export class SimpleFormComponent implements OnInit {
 
   addSectionForm() {
     const section = this.fb.group({
+      sectionTitle: [
+        '', [
+          Validators.required,
+        ]
+      ],
       content: ['', [
         Validators.required,
       ]],
